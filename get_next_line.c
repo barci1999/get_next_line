@@ -80,7 +80,7 @@ char	*get_next_line(int fd)
 	return (line);
 }
 
-/* int main()
+/*int main()
 {
 	int fd;
 	char *line;
@@ -88,13 +88,13 @@ char	*get_next_line(int fd)
 	fd = open("chistes.txt", O_RDONLY);
 	if (fd == -1)
 	{
-		perror("Error abriendo el archivo");
+		printf("Error abriendo el archivo\n");
 		return (1);
 	}
 	line = get_next_line(fd);
 	while (line)
 	{
-		printf("%s",line); // Sin "\n".
+		printf("%s",line);
 		free(line);
 		line = get_next_line(fd);
 	}

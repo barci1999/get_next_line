@@ -82,7 +82,6 @@ char	*get_next_line(int fd)
 
 /*int	main(void)
 {
-	// Abrimos varios archivos (ajusta las rutas según tus archivos locales)
 	int	fd1 = open("archivo1.txt", O_RDONLY);
 	int	fd2 = open("archivo2.txt", O_RDONLY);
 	int	fd3 = open("archivo3.txt", O_RDONLY);
@@ -92,36 +91,38 @@ char	*get_next_line(int fd)
 		printf("Error al abrir uno de los archivos.\n");
 		return (1);
 	}
-
-	// Leemos alternadamente líneas de cada archivo
 	char	*line1;
 	char	*line2;
 	char	*line3;
+	int		line_number = 1;
 
-	for (int i = 0; i < 3; i++) // Leer 3 líneas de cada archivo
+	while (1)
 	{
 		line1 = get_next_line(fd1);
 		line2 = get_next_line(fd2);
 		line3 = get_next_line(fd3);
 
+		if (!line1 && !line2 && !line3)
+			break;
 		if (line1)
 		{
-			printf("Archivo 1, línea %d: %s", i + 1, line1);
-			free(line1);  // No olvidar liberar la línea leída
+			printf("Archivo 1, línea %d: %s", line_number, line1);
+			free(line1);
 		}
 		if (line2)
 		{
-			printf("Archivo 2, línea %d: %s", i + 1, line2);
+			printf("Archivo 2, línea %d: %s", line_number, line2);
 			free(line2);
 		}
 		if (line3)
 		{
-			printf("Archivo 3, línea %d: %s", i + 1, line3);
+			printf("Archivo 3, línea %d: %s", line_number, line3);
 			free(line3);
 		}
+
+		line_number++;  
 	}
 
-	// Cerrar los descriptores de archivo
 	close(fd1);
 	close(fd2);
 	close(fd3);
